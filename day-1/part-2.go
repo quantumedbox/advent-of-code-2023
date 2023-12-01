@@ -7,8 +7,6 @@ import (
 	"os"
 )
 
-var words = [9]string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
-
 func main() {
 	readFile, err := os.Open("input")
 	if err != nil {
@@ -23,34 +21,32 @@ func main() {
 	result := 0
 
 	for fileScanner.Scan() {
-		var first, last rune
+		var first, last int
 		var firstIdx, lastIdx int
 
 		line := fileScanner.Text()
 
 		if firstIdx = strings.IndexAny(line, "0123456789"); firstIdx != -1 {
-			first = rune(line[firstIdx])
+			first = int(line[firstIdx]) - 0x30
 		}
 
 		if lastIdx = strings.LastIndexAny(line, "0123456789"); lastIdx != -1 {
-			last = rune(line[lastIdx])
+			last = int(line[lastIdx]) - 0x30
 		}
 
-		for i, word := range words {
+		for i, word := range [9]string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"} {
 			if t := strings.Index(line, word); t != -1 && (t < firstIdx || firstIdx == -1) {
 				firstIdx = t
-				first = rune(i + 1 + 0x30)
+				first = i + 1
 			}
 
 			if t := strings.LastIndex(line, word); t != -1 && t > lastIdx {
 				lastIdx = t
-				last = rune(i + 1 + 0x30)
+				last = i + 1
 			}
 		}
 
-		number := (int(first) - 0x30) * 10 + int(last) - 0x30
-
-		result += number
+		result += first * 10 + last
 	}
 
 	fmt.Println(result);
