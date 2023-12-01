@@ -1,16 +1,16 @@
 package main
 
 import (
-	"strings"
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
 	readFile, err := os.Open("input")
 	if err != nil {
-		panic("Cannot read file");
+		panic("Cannot read file")
 	}
 
 	defer readFile.Close()
@@ -46,8 +46,8 @@ func main() {
 			}
 		}
 
-		result += first * 10 + last
+		result += first*10 + last
 	}
 
-	fmt.Println(result);
+	fmt.Println(result)
 }

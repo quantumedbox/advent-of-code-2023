@@ -1,17 +1,17 @@
 package main
 
 import (
-	"strconv"
-	"unicode"
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"unicode"
 )
 
 func main() {
 	readFile, err := os.Open("input")
 	if err != nil {
-		panic("Cannot read file");
+		panic("Cannot read file")
 	}
 
 	defer readFile.Close()
@@ -46,5 +46,5 @@ func main() {
 		result += number
 	}
 
-	fmt.Println(result);
+	fmt.Println(result)
 }
