@@ -27,11 +27,6 @@ parseIdPart = \part ->
             Err InvalidNumStr -> crash "Invalid input"
         Err NotFound -> crash "Invalid input"
 
-boolToStr = \bool ->
-    if bool then
-        "true"
-    else "false"
-
 checkGamePart = \part ->
     Str.split part ";"
     |> List.map \str -> Str.split str ","
