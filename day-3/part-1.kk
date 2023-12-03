@@ -16,12 +16,11 @@ fun walk-grid( grid: list<list<char>> )
 
   fun check-cell( x : int, y : int ) : bool
     [(-1, -1), (0, -1), (1, -1), (1, 0), (1, 1), (0, 1), (-1, 1), (-1, 0)].any fn(o)
-      match o
-        (ox, oy) -> match grid[y + oy]
-          Just(row) -> match row[x + ox]
-            Just(cell) -> !cell.is-digit() && cell != '.'
-            Nothing -> False
+      match grid[y + o.snd()]
+        Just(row) -> match row[x + o.fst()]
+          Just(cell) -> !cell.is-digit() && cell != '.'
           Nothing -> False
+        Nothing -> False
 
   fun update()
     if e then result := result + v
